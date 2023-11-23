@@ -100,6 +100,17 @@ button {
   cursor: pointer;
 }
 
+table{
+  border-collapse: collapse;
+  width: 100%;
+  border: 2px solid #dddddd;
+}
+tr, td {
+  border: 1px solid #dddddd; /* Border for each cell */
+  text-align: center;
+  padding: 8px;
+}
+
 button:hover {
   border-color: #396cd8;
 }
@@ -135,4 +146,6 @@ button {
   button:active {
     background-color: #0f0f0f69;
   }
+
+  
 }
