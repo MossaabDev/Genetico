@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./styles.css";
 
-const MatrixTable = ({matrix}) => {
+const MatrixTable = ({matrix, values}) => {
+    const[popMatrix, setPopMatrix] = useState(matrix);
+    const[popValues, setPopValues] = useState(values);
+    
   return (
     <table>
         <tbody>
@@ -11,6 +14,7 @@ const MatrixTable = ({matrix}) => {
                     {row.map((cell, colIndex) => (
                         <td key={colIndex}>{cell}</td>
                     ))}
+                    <td>{values[rowIndex]}</td>
                 </tr>
             ))}
         </tbody>
