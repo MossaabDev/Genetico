@@ -12,17 +12,21 @@ import { MemoryRouter } from "react-router-dom";
 
 function App({callback}) {
   const [greetMsg, setGreetMsg] = useState("");
-  const [popMatrix, setPopMatrix] = useState('');
   const [name, setName] = useState("");
+  
   async function createTable(){
     setPopMatrix(await invoke("create_pop_matrix", { popLength, geneLength}))
   }
   async function greeting() {
     setGreetMsg(await invoke("greeting", { name }));
   }
+  const[popMatrix, setPopMatrix] = useState([]);
+  const[popValues, setPopValues] = useState([]);
   const [popLength, setPopLength] = useState(4);
   const [geneLength, setGeneLength] = useState(8);
-
+  const [rangeStart, setRagngeStart] = useState(-2);
+  const [rangeEnd, setRangeEnd] = useState(2);
+  
   const handlePopLength = (newValue) =>{
     setPopLength(newValue)
   }
@@ -30,6 +34,16 @@ function App({callback}) {
   const handleGeneLength = (newValue) =>{
     setGeneLength(newValue)
   }
+
+  const handleRangeStart = (newValue) =>{
+    setRagngeStart(newValue)
+  }
+
+  const handleRangeEnd = (newValue) =>{
+    setRangeEnd(newValue)
+  }
+
+  
   
 
 return (
@@ -37,8 +51,8 @@ return (
     
       <Routes>
         <Route path="/" element={<Welcome function1={handlePopLength} function2={handleGeneLength} value1={popLength} value2={geneLength}/>} />  
-        <Route path="/Range" element={<Range />} />  
-        <Route path="/Population" element={<Population lines={popLength} columns={geneLength}/>} />  
+        <Route path="/Range" element={<Range start={rangeStart} end={rangeEnd} function1={handleRangeStart} function2={handleRangeEnd}/> } />  
+        <Route path="/Population" element={<Population lines={popLength} columns={geneLength} start={rangeStart} end={rangeEnd} matrix={popMatrix} values={popValues} function1={setPopMatrix} function2={setPopValues}/>} />  
         <Route path="/Crossover" element={<Crossover />} />  
         
       </Routes> 
