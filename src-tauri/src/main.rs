@@ -52,7 +52,7 @@ fn calculate_values(pop: Vec<Vec<i32>>, start: i32, end: i32) -> Vec<f32> {
         println!("\n")
     }
     let k = end - start;
-    let mut values: Vec<f32> = vec![0_f32; 4];
+    let mut values: Vec<f32> = vec![0_f32; pop.len()];
     for i in 0..POP_LENGTH {
         for j in 0..pop[i].len() {
             values[i] = values[i] + (pop[i][j] * 2_i32.pow(7 - j as u32)) as f32;
